@@ -46,6 +46,13 @@ class Grid:
     def __init__(self, rows: list[str]):
         self.__rows = rows
 
+    def __iter__(self):
+        for y, row in enumerate(self.__rows):
+            yield y, enumerate(row)
+
+    def copy(self) -> "Grid":
+        return Grid(self.__rows.copy())
+
     def col_count(self) -> int:
         return len(self.__rows[0])
 
@@ -78,6 +85,11 @@ class Grid:
 
     def get(self, xy: Point) -> str:
         return self.__rows[xy[1]][xy[0]]
+
+    def setchar(self, xy: Point, char: str) -> None:
+        line = list(self.__rows[xy[1]])
+        line[xy[0]] = char
+        self.__rows[xy[1]] = "".join(line)
 
     def is_in_bounds(self, xy: Point) -> bool:
         x, y = xy
