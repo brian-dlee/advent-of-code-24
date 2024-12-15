@@ -39,6 +39,18 @@ def move_down_and_left(x: int, y: int) -> Point:
     return x - 1, y + 1
 
 
+def point_add(a: Point, b: Point) -> Point:
+    return a[0] + b[0], a[1] + b[1]
+
+
+def translate_left(point: Point) -> Point:
+    return move_left(point[0]), point[1]
+
+
+def translate_right(point: Point) -> Point:
+    return move_right(point[0]), point[1]
+
+
 @dataclasses.dataclass
 class Grid:
     __rows: list[str]
